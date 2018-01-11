@@ -1,0 +1,76 @@
+---
+title: "data summaries"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r include=FALSE}
+library(dplyr)
+library(ggplot2)
+library(data.table)
+```
+
+# Basic Counts
+
+```{r cars}
+df <- readRDS('R:/frackingmodels/ca-wq-fracking/data/logit_data.RDA')
+print.data.frame(df[1:5,])
+
+```
+
+### number of unique wells by county and year
+
+Note that in the following plot the panels have different ranges for the y-axis.  I did this in order to make some of the lesser represented counties visible.
+
+```{r}
+plot.df <- df %>% group_by(COUNTY,YEAR) %>% summarise(well.count=n_distinct(WELL.ID))
+ggplot(plot.df,aes(x=YEAR,y=well.count)) + geom_bar(stat='identity') + facet_wrap(~COUNTY,scales='free') + 
+  theme(axis.text.x=element_text(angle=45)) + theme_bw()
+
+```
+
+### number of unique wells by groundwater basin
+```{r}
+plot.df <- df %>% group_by(YEAR,COUNTY,Basin_Name) %>% summarise(well.count=n_distinct(WELL.ID))
+
+# Monterey
+ggplot(subset(plot.df,COUNTY=='MONTEREY'),aes(x=YEAR,y=well.count)) + geom_bar(stat='identity') + facet_wrap(~Basin_Name) + theme_bw()
+
+# San Luis Obispo
+ggplot(subset(plot.df,COUNTY=='SAN LUIS OBISPO'),aes(x=YEAR,y=well.count)) + geom_bar(stat='identity') + facet_wrap(~Basin_Name) + theme_bw()
+
+# Kings
+ggplot(subset(plot.df,COUNTY=='KINGS'),aes(x=YEAR,y=well.count)) + geom_bar(stat='identity') + facet_wrap(~Basin_Name) + theme_bw()
+
+# KERN
+ggplot(subset(plot.df,COUNTY=='KERN'),aes(x=YEAR,y=well.count)) + geom_bar(stat='identity') + facet_wrap(~Basin_Name) + theme_bw()
+
+# Tulare
+ggplot(subset(plot.df,COUNTY=='TULARE'),aes(x=YEAR,y=well.count)) + geom_bar(stat='identity') + facet_wrap(~Basin_Name) + theme_bw()
+
+# Santa Barbara
+ggplot(subset(plot.df,COUNTY=='SANTA BARBARA'),aes(x=YEAR,y=well.count)) + geom_bar(stat='identity') + facet_wrap(~Basin_Name) + theme_bw()
+
+# Ventura
+ggplot(subset(plot.df,COUNTY=='VENTURA'),aes(x=YEAR,y=well.count)) + geom_bar(stat='identity') + facet_wrap(~Basin_Name) + theme_bw()
+
+# Los Angeles
+ggplot(subset(plot.df,COUNTY=='LOS ANGELES'),aes(x=YEAR,y=well.count)) + geom_bar(stat='identity') + facet_wrap(~Basin_Name) + theme_bw()
+
+# Orange
+ggplot(subset(plot.df,COUNTY=='ORANGE'),aes(x=YEAR,y=well.count)) + geom_bar(stat='identity') + facet_wrap(~Basin_Name) + theme_bw()
+
+# San Diego
+ggplot(subset(plot.df,COUNTY=='SAN DIEGO'),aes(x=YEAR,y=well.count)) + geom_bar(stat='identity') + facet_wrap(~Basin_Name) + theme_bw()
+
+
+```
+
+
+
+
+
