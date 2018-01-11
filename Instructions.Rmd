@@ -1,0 +1,22 @@
+---
+title: "Untitled"
+author: "aaron mamula"
+date: "Thursday, September 17, 2015"
+output: html_document
+---
+
+This projects includes the code necessary to reproduce our analysis of the impact of unconventional oil and gas exploration in California on groundwater quality.  In addition to R code, The GitHub repository [https://github.com/aaronmams/fracking-WQ.git](https://github.com/aaronmams/fracking-WQ.git) contains the data necessary to replacate the analysis.  Metadata for the project is available as a separate .Rmd file.  This document provides step-by-step instructions for setting up the analysis:
+
+# Data Setup
+1.  First, unzip the folder "GAMA County Data.zip" and save the contents to a local directory.  Next, change the variable gw.well.path in the script fracking_data_build.R to point to the directory where the GAMA County Data contents have been saved.
+
+2.  Unzip the folder "oginjection.zip" and save the contents to a local directory.  Next, change the variable inj.path in the script fracking_data_build.R to point to the directory where the Injection Wells data has been saved.
+
+3.  Unzip the folder "well_info.zip" and save the contents to a local directory.  Change the variable well.info.path in the script fracking_data_build.R to point to the directory where the Well Info data has been saved.
+
+# Exploration
+
+# Estimation
+
+# Post Estimation
+
